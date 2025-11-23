@@ -1,16 +1,119 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+    <meta charset="UTF-8">
+    <title>Expanding Cards</title>
 
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            width: 90vw;
+            gap: 10px;
+        }
+
+        .panel {
+            position: relative;
+            height: 80vh;
+            flex: 0.5;
+            border-radius: 20px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .panel.active {
+            flex: 5;
+        }
+
+        .img-text {
+            font-size: 24px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            font-weight: bold;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+        }
+
+        .panel.active .img-text {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 100vw;
+            }
+            .panel.active {
+                flex: 3;
+            }
+        }
+    </style>
+</head>
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+
+<div class="container">
+
+    <div class="panel active" id="panel-1" 
+         style="background-image:url('https://images.unsplash.com/photo-1558979158-65a1eaa08691?auto=format&fit=crop&w=1350&q=80');">
+        <p class="img-text">Explore the world</p>
+    </div>
+
+    <div class="panel" id="panel-2"
+         style="background-image:url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?auto=format&fit=crop&w=1350&q=80');">
+        <p class="img-text">Wild Forest</p>
+    </div>
+
+    <div class="panel" id="panel-3"
+         style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1353&q=80');">
+        <p class="img-text">City on Winter</p>
+    </div>
+
+    <div class="panel" id="panel-4"
+         style="background-image:url('https://images.unsplash.com/photo-1551009175-8a68da93d5f9?auto=format&fit=crop&w=1351&q=80');">
+        <p class="img-text">Mountain Cloud</p>
+    </div>
+
+    <div class="panel" id="panel-5"
+         style="background-image:url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1350&q=80');">
+        <p class="img-text">Sunny Beach</p>
+    </div>
+
+</div>
+
+<script>
+    const panels = document.querySelectorAll('.panel');
+
+    panels.forEach((panel) => {
+        panel.addEventListener('click', () => {
+            removeActiveClasses();
+            panel.classList.add('active');
+        });
+    });
+
+    function removeActiveClasses() {
+        panels.forEach(panel => panel.classList.remove('active'));
+    }
 </script>
 
 </body>
-
 </html>
+
